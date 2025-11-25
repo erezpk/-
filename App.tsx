@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -16,8 +15,7 @@ import AboutPage from './pages/AboutPage';
 import ArticlePage from './pages/ArticlePage';
 import { ViewState, ServiceProvider, User, UserRole, Review, Article } from './types';
 import { SERVICE_PROVIDERS } from './constants';
-import { analytics } from './firebase';
-import { logEvent } from "firebase/analytics";
+import { analytics, logEvent } from './firebase';
 
 function App() {
   const [currentView, setCurrentView] = useState<ViewState>(ViewState.HOME);
@@ -258,7 +256,9 @@ function App() {
         onLogout={handleLogout}
       />
       <div className="flex-grow">
-        {content}
+        <div key={currentView} className="animate-fade-in">
+          {content}
+        </div>
       </div>
       <Footer />
     </div>
